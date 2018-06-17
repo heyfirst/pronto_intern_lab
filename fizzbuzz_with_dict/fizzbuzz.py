@@ -4,12 +4,13 @@ import unittest
 class FizzBuzz(object):
     def say(self, number):
         fizzbuzz = {
-          number % 15 == 0: 'Fizz'
-          number % 3 == 0: 'Fizz'
-          number % 3 == 0: 'Fizz'
+            True: number,
+            number % 3 == 0: 'Fizz',
+            number % 5 == 0: 'Buzz',
+            number % 3 == 0 and number % 5 == 0: 'FizzBuzz'
         }
 
-        return number
+        return fizzbuzz[True]
 
 
 class FizzBuzzTest(unittest.TestCase):
@@ -34,6 +35,10 @@ class FizzBuzzTest(unittest.TestCase):
 
     def test_input_15_return_FizzBuzz(self):
         actual = self.fizzbuzz.say(15)
+        self.assertEqual(actual, 'FizzBuzz')
+
+    def test_input_30_return_FizzBuzz(self):
+        actual = self.fizzbuzz.say(30)
         self.assertEqual(actual, 'FizzBuzz')
 
     def test_input_1_return_1(self):
